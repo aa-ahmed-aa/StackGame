@@ -1,10 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
+<<<<<<< HEAD
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
+public class theStack : MonoBehaviour {
+    public Text scoreText;
+    public Color32[] gameColors = new Color32[4];
+    public Material stackMat;
+    public GameObject endPanel;
+=======
 
 public class theStack : MonoBehaviour {
 
     public Color32[] gameColors = new Color32[4];
     public Material stackMat;
+>>>>>>> 2dc97f378678bad09b1e99f1fe687af45e543f6d
 
     private const float BOUNDS_SIZE = 3.5f;
     private const float STACK_MOVING_SPEED=5.0f;
@@ -46,12 +57,22 @@ public class theStack : MonoBehaviour {
 	// Update is called once per frame
 	private void Update ()
     {
+<<<<<<< HEAD
+        if (gameOver)
+            return;
+
+=======
+>>>>>>> 2dc97f378678bad09b1e99f1fe687af45e543f6d
         if (Input.GetMouseButtonDown(0))
         {
             if(placeTile())
             {
                 SpawnTile();
                 scoreCount++;
+<<<<<<< HEAD
+                scoreText.text = scoreCount.ToString();
+=======
+>>>>>>> 2dc97f378678bad09b1e99f1fe687af45e543f6d
             }
             else
             {
@@ -79,9 +100,12 @@ public class theStack : MonoBehaviour {
 
     private void MoveTile()
     {
+<<<<<<< HEAD
+=======
         if (gameOver)
             return;
 
+>>>>>>> 2dc97f378678bad09b1e99f1fe687af45e543f6d
         tileTransform += Time.deltaTime * tileSpeed;
         
         if(isMovingOnX)
@@ -161,12 +185,21 @@ public class theStack : MonoBehaviour {
                 float middle = lastTileposition.z + t.localPosition.z / 2;
                 t.localScale = new Vector3(stackBounds.x, 1, stackBounds.y);
                 createRubble(
+<<<<<<< HEAD
+                   new Vector3(t.position.x
+                   ,t.position.y
+                   ,(t.position.z > 0)
+                   ?t.position.z + (t.localScale.z/2)
+                   :t.position.z - (t.localScale.z / 2)),
+                   new Vector3(t.localScale.x, 1, Mathf.Abs(deltaZ))
+=======
                    new Vector3((t.position.x > 0)
                    ? t.position.x + (t.localScale.x / 2)
                    : t.position.x - (t.localScale.x / 2)
                    , t.position.y
                    , t.position.z),
                    new Vector3(Mathf.Abs(deltaZ), 1, t.localScale.z)
+>>>>>>> 2dc97f378678bad09b1e99f1fe687af45e543f6d
                    );
                 t.localPosition = new Vector3(lastTileposition.x, scoreCount, middle - (lastTileposition.z / 2));
             }
@@ -221,8 +254,22 @@ public class theStack : MonoBehaviour {
 
     private void EndGame()
     {
+<<<<<<< HEAD
+        if (PlayerPrefs.GetInt("score") < scoreCount)
+            PlayerPrefs.SetInt("score",scoreCount);
+        gameOver = true;
+        endPanel.SetActive(true);
+        TheStack[stackIndex].AddComponent<Rigidbody>();
+    }
+
+    public void OnButtonClick(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+=======
         Debug.Log("Lose");
         gameOver = true;
         TheStack[stackIndex].AddComponent<Rigidbody>();
     }
+>>>>>>> 2dc97f378678bad09b1e99f1fe687af45e543f6d
 }
